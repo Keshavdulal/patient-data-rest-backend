@@ -1,5 +1,5 @@
 {
-  "name": "node-image-server-assignment-1",
+  "name": "patient-data-rest-backend",
   "version": "1.0.0",
   "description": "A node server that handles & serves images",
   "main": "index.js",
@@ -7,5 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Keshav Dulal",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keshavdulal/patient-data-rest-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Keshavdulal/patient-data-rest-backend/issues"
+  },
+  "homepage": "https://github.com/Keshavdulal/patient-data-rest-backend#readme"
 }
