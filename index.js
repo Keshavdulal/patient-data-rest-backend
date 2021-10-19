@@ -4,6 +4,28 @@ const express = require("express"); // core-library to run our server on top of 
 const PORT_ADDR = 8000;
 const LOCALHOST = "127.0.0.1";
 
+// Local Database - prepopulated
+const DB = {
+  patientInfo: [],
+  patientTest: [
+    {
+      id: 20,
+      name: "John Doe",
+      // todo: add more attributes here
+    },
+    {
+      id: 21,
+      name: "Lucy Rose",
+      // todo: add more attributes here
+    },
+    {
+      id: 22,
+      name: "John Denver",
+      // todo: add more attributes here
+    },
+  ],
+};
+
 // create an instance of express to run your app or server;
 const server = express();
 
@@ -37,9 +59,27 @@ server.get("/patient-info-all", (request, response) => {});
 server.post("/patient-test", (request, response) => {});
 
 // TODO: Keshav
-server.get("/patient-test", (request, response) => {});
+server.get("/patient-test/:id", (request, response) => {
+  console.log("GET -> /patient-test/:id");
+
+  const requestedPatientId = request.params.id;
+
+  // get patient info from Local DataBase (Array)
+  // Use filter method to narrow down the search
+  const requestedPatientTest = DB?.patientTest.filter(
+    (patient) => requestedPatientId == patient.id
+  );
+
+  console.log(requestedPatientTest);
+
+  if (requestedPatientTest?.length) {
+    response.send(requestedPatientTest[0]);
+  } else {
+    response.send({ error: "Not found" });
+  }
+});
 
 server.listen(PORT_ADDR, () => {
   console.log(`Server is running at ${LOCALHOST}:${PORT_ADDR}`);
-  console.log(`Following routes are available: \n/\ \n/\images`);
+  // console.log(`Following routes are available: `);
 });
