@@ -6,7 +6,27 @@ const LOCALHOST = "127.0.0.1";
 
 // Local Database - prepopulated
 const DB = {
-  patientInfo: [],
+  patientInfo: [
+  {
+    name: "John Doe",
+    age: 54,
+    height: "5'8",
+    address: "Vancouver",
+    contact_no: "+1 442-223-4424",
+    blood_group: "O+",
+    remarks: "Okay"
+  },
+  {
+    name: "Lucy Rose",
+    age: 88,
+    height: "5'11",
+    address: "Winnipeg",
+    contact_no: "+1 213-423-3579",
+    blood_group: "AB+",
+    remarks: "Good"
+  }
+
+],
   patientTest: [
     {
       id: 20,
@@ -53,7 +73,11 @@ server.post("/patient-info", (request, response) => {});
 server.get("/patient-info", (request, response) => {});
 
 // TODO: Shrijan
-server.get("/patient-info-all", (request, response) => {});
+server.get("/patient-info-all", (request, response) => {
+  console.log("GET -> /patient-info-all/")
+  response.send(DB.patientInfo)
+
+  });
 
 // TODO: Justice
 server.post("/patient-test", (request, response) => {});
