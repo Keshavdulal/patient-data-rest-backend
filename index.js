@@ -66,8 +66,30 @@ server.get("/", (request, response) => {
  *  Name, Age, Height, Weight, Address, Contact No, Emergency Contact No, Blood Group, Remarks
  */
 
+server.get("/patient-info", (request, response) => {
+    response.send(DB.patientInfo);
+})
 // TODO: Aishwarya
-server.post("/patient-info", (request, response) => {});
+//to send data to frontend to server we use post request
+//passing callback function with request and response parameter
+server.post("/patient-info", (request, response) => {
+    //to add patient-info to database
+    const data = request.body
+    //adding object to JSON array we use push method
+    //push the patient info to our JSON array
+    DB.patientInfo.push(data)
+    response.send('Patient Info have been added.');
+});
+
+
+//adding in json -postman
+//{   "name": "Aishwarya Shrestha",
+//    "age": "26",
+//    "height": "5'5",
+//    "address": "Brampton",
+//    "blood group": "O+",
+//    "remarks": "Life is Beautiful."
+//}
 
 // TODO: Basil
 server.get("/patient-info", (request, response) => {});
@@ -76,7 +98,6 @@ server.get("/patient-info", (request, response) => {});
 server.get("/patient-info-all", (request, response) => {
   console.log("GET -> /patient-info-all/")
   response.send(DB.patientInfo)
-
   });
 
 // TODO: Justice
