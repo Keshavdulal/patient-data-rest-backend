@@ -5,7 +5,8 @@ const PORT_ADDR = 8000;
 const LOCALHOST = "127.0.0.1";
 
 // Local Database - prepopulated
-const DB = {
+const DB = 
+{
   patientInfo: [
   {
     name: "John Doe",
@@ -101,7 +102,27 @@ server.get("/patient-info-all", (request, response) => {
   });
 
 // TODO: Justice
-server.post("/patient-test", (request, response) => {});
+server.post("/patient-test", (request, response) => {
+
+  //checks if patient id and name is specified
+  if (request.body.id == null || request.body.name == null){
+    //gives an error message if id and name is not entered
+    response.send({error: "ID and Name are required"})
+  }
+  else{
+    DB.patientTest.push({
+      id: request.body.id,
+      name: request.body.name,
+      cbc: request.body.cbc,
+      prt: request.body.prt,
+      bmp: request.body.bmp
+    })
+
+    //final response after entering new patient data
+    response.send("Values inserted succesfully!")
+  }
+
+});
 
 // TODO: Keshav
 server.get("/patient-test/:id", (request, response) => {
