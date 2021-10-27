@@ -93,7 +93,12 @@ server.post("/patient-info", (request, response) => {
 //}
 
 // TODO: Basil
-server.get("/patient-info", (request, response) => {});
+// In the url you have to specify the ID of the patient
+// eg url: 127.0.0.1:8000/patient-info/1
+server.get("/patient-info/:id", (request, response) => {
+  console.log("GET Specific Patient Info")
+  response.send(DB.patientInfo)
+  });
 
 // TODO: Shrijan
 server.get("/patient-info-all", (request, response) => {
