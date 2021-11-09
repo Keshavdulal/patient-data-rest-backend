@@ -1,33 +1,31 @@
 const express = require("express"); // core-library to run our server on top of nodejs
 
 // Application Constants
-const PORT_ADDR = 8000;
+const PORT_ADDR = process.env.PORT || 8000;
 const LOCALHOST = "127.0.0.1";
 
 // Local Database - prepopulated
-const DB = 
-{
+const DB = {
   patientInfo: [
-  {
-    name: "John Doe",
-    age: 54,
-    height: "5'8",
-    address: "Vancouver",
-    contact_no: "+1 442-223-4424",
-    blood_group: "O+",
-    remarks: "Okay"
-  },
-  {
-    name: "Lucy Rose",
-    age: 88,
-    height: "5'11",
-    address: "Winnipeg",
-    contact_no: "+1 213-423-3579",
-    blood_group: "AB+",
-    remarks: "Good"
-  }
-
-],
+    {
+      name: "John Doe",
+      age: 54,
+      height: "5'8",
+      address: "Vancouver",
+      contact_no: "+1 442-223-4424",
+      blood_group: "O+",
+      remarks: "Okay",
+    },
+    {
+      name: "Lucy Rose",
+      age: 88,
+      height: "5'11",
+      address: "Winnipeg",
+      contact_no: "+1 213-423-3579",
+      blood_group: "AB+",
+      remarks: "Good",
+    },
+  ],
   patientTest: [
     {
       id: 20,
@@ -68,20 +66,19 @@ server.get("/", (request, response) => {
  */
 
 server.get("/patient-info", (request, response) => {
-    response.send(DB.patientInfo);
-})
+  response.send(DB.patientInfo);
+});
 // TODO: Aishwarya
 //to send data to frontend to server we use post request
 //passing callback function with request and response parameter
 server.post("/patient-info", (request, response) => {
-    //to add patient-info to database
-    const data = request.body
-    //adding object to JSON array we use push method
-    //push the patient info to our JSON array
-    DB.patientInfo.push(data)
-    response.send('Patient Info have been added.');
+  //to add patient-info to database
+  const data = request.body;
+  //adding object to JSON array we use push method
+  //push the patient info to our JSON array
+  DB.patientInfo.push(data);
+  response.send("Patient Info have been added.");
 });
-
 
 //adding in json -postman
 //{   "name": "Aishwarya Shrestha",
@@ -96,37 +93,34 @@ server.post("/patient-info", (request, response) => {
 // In the url you have to specify the ID of the patient
 // eg url: 127.0.0.1:8000/patient-info/1
 server.get("/patient-info/:id", (request, response) => {
-  console.log("GET Specific Patient Info")
-  response.send(DB.patientInfo)
-  });
+  console.log("GET Specific Patient Info");
+  response.send(DB.patientInfo);
+});
 
 // TODO: Shrijan
 server.get("/patient-info-all", (request, response) => {
-  console.log("GET -> /patient-info-all/")
-  response.send(DB.patientInfo)
-  });
+  console.log("GET -> /patient-info-all/");
+  response.send(DB.patientInfo);
+});
 
 // TODO: Justice
 server.post("/patient-test", (request, response) => {
-
   //checks if patient id and name is specified
-  if (request.body.id == null || request.body.name == null){
+  if (request.body.id == null || request.body.name == null) {
     //gives an error message if id and name is not entered
-    response.send({error: "ID and Name are required"})
-  }
-  else{
+    response.send({ error: "ID and Name are required" });
+  } else {
     DB.patientTest.push({
       id: request.body.id,
       name: request.body.name,
       cbc: request.body.cbc,
       prt: request.body.prt,
-      bmp: request.body.bmp
-    })
+      bmp: request.body.bmp,
+    });
 
     //final response after entering new patient data
-    response.send("Values inserted succesfully!")
+    response.send("Values inserted succesfully!");
   }
-
 });
 
 // TODO: Keshav
@@ -151,6 +145,7 @@ server.get("/patient-test/:id", (request, response) => {
 });
 
 server.listen(PORT_ADDR, () => {
-  console.log(`Server is running at ${LOCALHOST}:${PORT_ADDR}`);
+  console.log(`Server is running at:${PORT_ADDR}`);
+  // console.log(`Server is running at ${LOCALHOST}:${PORT_ADDR}`);
   // console.log(`Following routes are available: `);
 });
