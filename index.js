@@ -30,17 +30,23 @@ const DB = {
     {
       id: 20,
       name: "John Doe",
-      // todo: add more attributes here
+      bloodPressure: "90/110",
+      respiratoryRate: 90,
+      heartBeatRate: 79,
     },
     {
       id: 21,
       name: "Lucy Rose",
-      // todo: add more attributes here
+      bloodPressure: "80/120",
+      respiratoryRate: 90,
+      heartBeatRate: 79,
     },
     {
       id: 22,
       name: "John Denver",
-      // todo: add more attributes here
+      bloodPressure: "85/150",
+      respiratoryRate: 90,
+      heartBeatRate: 79,
     },
   ],
 };
@@ -68,6 +74,7 @@ server.get("/", (request, response) => {
 server.get("/patient-info", (request, response) => {
   response.send(DB.patientInfo);
 });
+
 // TODO: Aishwarya
 //to send data to frontend to server we use post request
 //passing callback function with request and response parameter
@@ -80,15 +87,6 @@ server.post("/patient-info", (request, response) => {
   response.send("Patient Info have been added.");
 });
 
-//adding in json -postman
-//{   "name": "Aishwarya Shrestha",
-//    "age": "26",
-//    "height": "5'5",
-//    "address": "Brampton",
-//    "blood group": "O+",
-//    "remarks": "Life is Beautiful."
-//}
-
 // TODO: Basil
 // In the url you have to specify the ID of the patient
 // eg url: 127.0.0.1:8000/patient-info/1
@@ -98,8 +96,8 @@ server.get("/patient-info/:id", (request, response) => {
 });
 
 // TODO: Shrijan
-server.get("/patient-info-all", (request, response) => {
-  console.log("GET -> /patient-info-all/");
+server.get("/patient-info", (request, response) => {
+  console.log("GET -> /patient-info");
   response.send(DB.patientInfo);
 });
 
@@ -146,6 +144,4 @@ server.get("/patient-test/:id", (request, response) => {
 
 server.listen(PORT_ADDR, () => {
   console.log(`Server is running at:${PORT_ADDR}`);
-  // console.log(`Server is running at ${LOCALHOST}:${PORT_ADDR}`);
-  // console.log(`Following routes are available: `);
 });
