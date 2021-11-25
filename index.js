@@ -142,6 +142,25 @@ server.get("/patient-test/:id", (request, response) => {
   }
 });
 
+// get all patient's medical records
+server.get("/patient-test", (request, response) => {
+  console.log("GET -> /patient-test");
+
+  const requestedPatientId = request.params.id;
+
+  // get patient info from Local DataBase (Array)
+  // Use filter method to narrow down the search
+  const requestedPatientTest = DB?.patientTest;
+
+  console.log(requestedPatientTest);
+
+  if (requestedPatientTest?.length) {
+    response.send(requestedPatientTest);
+  } else {
+    response.send({ error: "Not found" });
+  }
+});
+
 server.listen(PORT_ADDR, () => {
   console.log(`Server is running at:${PORT_ADDR}`);
 });
