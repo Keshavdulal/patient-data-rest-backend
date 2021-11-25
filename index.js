@@ -48,6 +48,20 @@ const DB = {
       respiratoryRate: 90,
       heartBeatRate: 79,
     },
+    {
+      id: 23,
+      name: "John Legend",
+      bloodPressure: "85/150",
+      respiratoryRate: 60,
+      heartBeatRate: 79,
+    },
+    {
+      id: 24,
+      name: "John Baker",
+      bloodPressure: "85/150",
+      respiratoryRate: 91,
+      heartBeatRate: 48,
+    },
   ],
 };
 
