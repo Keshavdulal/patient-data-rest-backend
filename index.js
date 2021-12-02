@@ -88,14 +88,11 @@ server.get("/", (request, response) => {
  *  Name, Age, Height, Weight, Address, Contact No, Emergency Contact No, Blood Group, Remarks
  */
 
-server.get("/patient-info", (request, response) => {
-  response.send(DB.patientInfo);
-});
 
 // TODO: Aishwarya
 //to send data to frontend to server we use post request
 //passing callback function with request and response parameter
-server.post("/patient-info", (request, response) => {
+server.post("/patient", (request, response) => {
   //to add patient-info to database
   const data = request.body;
   //adding object to JSON array we use push method
@@ -107,21 +104,22 @@ server.post("/patient-info", (request, response) => {
 // TODO: Basil
 // In the url you have to specify the ID of the patient
 // eg url: 127.0.0.1:8000/patient-info/1
-server.get("/patient-info/:id", (request, response) => {
+server.get("/patient/:id", (request, response) => {
   console.log("GET Specific Patient Info");
   response.send(DB.patientInfo);
 });
 
 // TODO: Shrijan
-server.get("/patient-info", (request, response) => {
-  console.log("GET -> /patient-info");
+// Gets all the data in the database 
+server.get("/patient", (request, response) => {
+  console.log("GET -> /patient");
   response.send(DB.patientInfo);
 });
 
 // TODO: Justice
-server.post("/patient-test", (request, response) => {
-  //checks if patient id and name is specified
-  if (request.body.id == null || request.body.name == null) {
+server.post("/patient/:id/test", (request, response) => {
+  //Checks if patient id is provided 
+  if (request.params.id == null) {
     //gives an error message if id and name is not entered
     response.send({ error: "ID and Name are required" });
   } else {
@@ -139,8 +137,8 @@ server.post("/patient-test", (request, response) => {
 });
 
 // TODO: Keshav
-server.get("/patient-test/:id", (request, response) => {
-  console.log("GET -> /patient-test/:id");
+server.get("/patient/:id/test", (request, response) => {
+  console.log("GET -> /patient/:id/test");
 
   const requestedPatientId = request.params.id;
 
@@ -160,8 +158,8 @@ server.get("/patient-test/:id", (request, response) => {
 });
 
 // get all patient's medical records
-server.get("/patient-test", (request, response) => {
-  console.log("GET -> /patient-test");
+server.get("/patient/test", (request, response) => {
+  console.log("GET -> /patient/test");
 
   const requestedPatientId = request.params.id;
 
