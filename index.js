@@ -104,24 +104,42 @@ server.post("/patient", (request, response) => {
 // TODO: Basil
 // In the url you have to specify the ID of the patient
 // eg url: 127.0.0.1:8000/patient-info/1
-server.get("/patient/:id", (request, response) => {
+server.get("/patient/:id/", (request, response) => {
   console.log("GET Specific Patient Info");
-  response.send(DB.patientInfo);
+  // get patient info from Local DataBase (Array)
+  // Use filter method to narrow down the search
+
+  const requestedPatientId = request.params.id;
+
+  const requestedPatientdata = DB?.patientInfo.filter(
+    (patient) => requestedPatientId == patient.id
+  );
+
+  if (requestedPatientdata?.length) {
+    response.send(requestedPatientdata[0]);
+  } else {
+    response.send({ error: "Not found" });
+  }
+  
 });
 
 // TODO: Shrijan
 // Gets all the data in the database 
-server.get("/patient", (request, response) => {
+server.get("/patient/", (request, response) => {
   console.log("GET -> /patient");
   response.send(DB.patientInfo);
+  
 });
 
 // TODO: Justice
 server.post("/patient/:id/test", (request, response) => {
   //Checks if patient id is provided 
+  //Might need to add logic where the user exists is checked.
+
+
   if (request.params.id == null) {
     //gives an error message if id and name is not entered
-    response.send({ error: "ID and Name are required" });
+    response.send({ error: "ID" });
   } else {
     DB.patientTest.push({
       id: request.body.id,
@@ -158,22 +176,10 @@ server.get("/patient/:id/test", (request, response) => {
 });
 
 // get all patient's medical records
-server.get("/patient/test", (request, response) => {
+server.get("/patient/tests/", (request, response) => {
   console.log("GET -> /patient/test");
 
-  const requestedPatientId = request.params.id;
-
-  // get patient info from Local DataBase (Array)
-  // Use filter method to narrow down the search
-  const requestedPatientTest = DB?.patientTest;
-
-  console.log(requestedPatientTest);
-
-  if (requestedPatientTest?.length) {
-    response.send(requestedPatientTest);
-  } else {
-    response.send({ error: "Not found" });
-  }
+  response.send(DB?.patientTest)
 });
 
 server.listen(PORT_ADDR, () => {
