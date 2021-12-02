@@ -13,6 +13,7 @@ describe(`POST ${API.PATIENT_INFO}`, () => {
 
   it(`OK, Testing POST ${API.PATIENT_INFO}`, (done) => {
     const payload = {
+      id: 1,
       name: "John Doe",
       age: 54,
       height: "5'8",

@@ -9,6 +9,7 @@ const LOCALHOST = "127.0.0.1";
 const DB = {
   patientInfo: [
     {
+      id: 1,
       name: "John Doe",
       age: 54,
       height: "5'8",
@@ -18,6 +19,7 @@ const DB = {
       remarks: "Okay",
     },
     {
+      id: 2,
       name: "Lucy Rose",
       age: 88,
       height: "5'11",
