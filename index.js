@@ -1,4 +1,5 @@
-const express = require("express"); // core-library to run our server on top of nodejs
+import express from "express"; // core-library to run our server on top of nodejs
+import { MESSAGE } from "./constants.js";
 
 // Application Constants
 const PORT_ADDR = process.env.PORT || 8000;
@@ -76,7 +77,7 @@ server.use(express.json());
 // Home endpoint - Request type GET
 server.get("/", (request, response) => {
   response.json({
-    message: "Welcome to Patient-Data-Rest-Backend.",
+    message: MESSAGE?.WELCOME,
   });
 });
 
@@ -98,7 +99,7 @@ server.post("/patient-info", (request, response) => {
   //adding object to JSON array we use push method
   //push the patient info to our JSON array
   DB.patientInfo.push(data);
-  response.send("Patient Info have been added.");
+  response.send({ message: MESSAGE?.PATIENT_INFO_ADD_SUCCESS });
 });
 
 // TODO: Basil
@@ -178,3 +179,5 @@ server.get("/patient-test", (request, response) => {
 server.listen(PORT_ADDR, () => {
   console.log(`Server is running at:${PORT_ADDR}`);
 });
+
+export default server;
