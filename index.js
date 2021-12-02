@@ -1,5 +1,5 @@
 import express from "express"; // core-library to run our server on top of nodejs
-import { MESSAGE } from "./constants.js";
+import { API, MESSAGE } from "./constants.js";
 
 // Application Constants
 const PORT_ADDR = process.env.PORT || 8000;
@@ -77,7 +77,7 @@ server.use(express.json());
 // Endpoints
 
 // Home endpoint - Request type GET
-server.get("/", (request, response) => {
+server.get(API.ROOT, (request, response) => {
   response.json({
     message: MESSAGE?.WELCOME,
   });
@@ -88,11 +88,11 @@ server.get("/", (request, response) => {
  *  Name, Age, Height, Weight, Address, Contact No, Emergency Contact No, Blood Group, Remarks
  */
 
-
 // TODO: Aishwarya
 //to send data to frontend to server we use post request
 //passing callback function with request and response parameter
-server.post("/patient", (request, response) => {
+server.post(API.PATIENT_INFO, (request, response) => {
+  console.log(`POST -> ${API.PATIENT_INFO}`);
   //to add patient-info to database
   const data = request.body;
   //adding object to JSON array we use push method
@@ -104,8 +104,8 @@ server.post("/patient", (request, response) => {
 // TODO: Basil
 // In the url you have to specify the ID of the patient
 // eg url: 127.0.0.1:8000/patient-info/1
-server.get("/patient/:id/", (request, response) => {
-  console.log("GET Specific Patient Info");
+server.get(API.PATIENT_INFO_BY_ID, (request, response) => {
+  console.log(`GET -> ${API.PATIENT_INFO_BY_ID}`);
   // get patient info from Local DataBase (Array)
   // Use filter method to narrow down the search
 
@@ -120,22 +120,19 @@ server.get("/patient/:id/", (request, response) => {
   } else {
     response.send({ error: "Not found" });
   }
-  
 });
 
 // TODO: Shrijan
-// Gets all the data in the database 
-server.get("/patient/", (request, response) => {
-  console.log("GET -> /patient");
+// Gets all the data in the database
+server.get(API.PATIENT_INFO, (request, response) => {
+  console.log(`GET -> ${API.PATIENT_INFO}`);
   response.send(DB.patientInfo);
-  
 });
 
 // TODO: Justice
-server.post("/patient/:id/test", (request, response) => {
-  //Checks if patient id is provided 
+server.post(API.PATIENT_TEST_BY_ID, (request, response) => {
+  //Checks if patient id is provided
   //Might need to add logic where the user exists is checked.
-
 
   if (request.params.id == null) {
     //gives an error message if id and name is not entered
@@ -155,8 +152,8 @@ server.post("/patient/:id/test", (request, response) => {
 });
 
 // TODO: Keshav
-server.get("/patient/:id/test", (request, response) => {
-  console.log("GET -> /patient/:id/test");
+server.get(API.PATIENT_TEST_BY_ID, (request, response) => {
+  console.log(`GET -> ${API.PATIENT_TEST_BY_ID}`);
 
   const requestedPatientId = request.params.id;
 
@@ -176,10 +173,10 @@ server.get("/patient/:id/test", (request, response) => {
 });
 
 // get all patient's medical records
-server.get("/patient/tests/", (request, response) => {
-  console.log("GET -> /patient/test");
+server.get(API.PATIENT_TEST, (request, response) => {
+  console.log(`GET -> ${API.API.PATIENT_TEST}`);
 
-  response.send(DB?.patientTest)
+  response.send(DB?.patientTest);
 });
 
 server.listen(PORT_ADDR, () => {

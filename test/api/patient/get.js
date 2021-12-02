@@ -22,9 +22,9 @@ describe(`GET ${API.PATIENT_INFO}`, () => {
       .catch((err) => done(err));
   });
 
-  it(`OK, Testing GET ${API.PATIENT_INFO}/:1`, (done) => {
+  it(`OK, Testing GET ${API.PATIENT_INFO_BY_ID}`, (done) => {
     request(server)
-      .get(`${API.PATIENT_INFO}/:1`)
+      .get(`${API.PATIENT_INFO_BY_ID.replace(":id", 21)}`)
       .then((res) => {
         const body = res.body;
         // console.log("Response.body=>", body);

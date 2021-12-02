@@ -1,7 +1,9 @@
 const API = {
-  PATIENT_INFO: "/patient-info",
-  // PATIENT_INFO: "/patient",
+  ROOT: "/",
+  PATIENT_INFO: "/patient",
+  PATIENT_INFO_BY_ID: "/patient/:id",
   PATIENT_TEST: "/patient/test",
+  PATIENT_TEST_BY_ID: "/patient/test/:id", // unsure
 };
 
 const MESSAGE = {
