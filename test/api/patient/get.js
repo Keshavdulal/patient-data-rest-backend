@@ -30,8 +30,8 @@ describe(`GET ${API.PATIENT_INFO}`, () => {
         // console.log("Response.body=>", body);
 
         // assertions
-        expect(body).to.be.a("array");
-        expect(body).to.have.lengthOf.above(0);
+        expect(body).to.be.a("object");
+        // expect(body).to.have.lengthOf.above(0);
         // end of tests
 
         done();

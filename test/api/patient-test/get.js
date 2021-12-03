@@ -31,8 +31,8 @@ describe(`GET ${API.PATIENT_TEST_BY_ID}`, () => {
         // console.log("Response.body=>", body);
 
         // assertions
-        expect(body).to.be.a("array");
-        expect(body).to.have.lengthOf.above(0);
+        expect(body).to.be.a("object");
+        // expect(body).to.have.lengthOf.above(0);
         // end of tests
 
         done();
