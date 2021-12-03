@@ -116,7 +116,7 @@ server.get(API.PATIENT_INFO_BY_ID, (request, response) => {
   );
 
   if (requestedPatientdata?.length) {
-    response.send(requestedPatientdata[0]);
+    response.send([requestedPatientdata[0]]);
   } else {
     response.send({ error: "Not found" });
   }
@@ -166,7 +166,7 @@ server.get(API.PATIENT_TEST_BY_ID, (request, response) => {
   console.log(requestedPatientTest);
 
   if (requestedPatientTest?.length) {
-    response.send(requestedPatientTest[0]);
+    response.send([requestedPatientTest[0]]);
   } else {
     response.send({ error: "Not found" });
   }

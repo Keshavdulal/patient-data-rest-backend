@@ -2,8 +2,8 @@ const API = {
   ROOT: "/",
   PATIENT_INFO: "/patient",
   PATIENT_INFO_BY_ID: "/patient/:id",
-  PATIENT_TEST: "/patient/test",
-  PATIENT_TEST_BY_ID: "/patient/test/:id", // unsure
+  PATIENT_TEST: "/patient/test", //unsure
+  PATIENT_TEST_BY_ID: "/patient/:id/test", 
 };
 
 const MESSAGE = {
