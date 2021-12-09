@@ -88,6 +88,15 @@ server.get(API.ROOT, (request, response) => {
  *  Name, Age, Height, Weight, Address, Contact No, Emergency Contact No, Blood Group, Remarks
  */
 
+
+// TODO: Shrijan
+// Gets all the data in the database
+server.get(API.PATIENT_INFO, (request, response) => {
+  console.log(`GET -> ${API.PATIENT_INFO}`);
+  response.send(DB.patientInfo);
+});
+
+
 // TODO: Aishwarya
 //to send data to frontend to server we use post request
 //passing callback function with request and response parameter
@@ -122,12 +131,7 @@ server.get(API.PATIENT_INFO_BY_ID, (request, response) => {
   }
 });
 
-// TODO: Shrijan
-// Gets all the data in the database
-server.get(API.PATIENT_INFO, (request, response) => {
-  console.log(`GET -> ${API.PATIENT_INFO}`);
-  response.send(DB.patientInfo);
-});
+
 
 // TODO: Justice
 server.post(API.PATIENT_TEST_BY_ID, (request, response) => {
